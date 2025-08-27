@@ -6,25 +6,25 @@ import  db  from "../database/data"
 
 let books: Book[] = []
 
-type menuAction = "add" | "update" | "delete" | "list book" | "Exit"
+type menuAction = "add" | "update" | "delete" | "book" | "Exit"
 export async function bookManagement() {
     while (true) {
         console.log("------- BOOKS LIBRARY --------- ");
-        let { bookList } = await inquirer.prompt<{ bookList: menuAction }>([
+        let { action } = await inquirer.prompt<{ action: menuAction }>([
             {
                 type: "list",
-                name: "bookList",
+                name: "action",
                 message: "Select following option: ?",
                 choices: [
                     { name: "add book", value: 'add' },
                     { name: "update book", value: 'update' },
                     { name: "delete book", value: 'delete' },
-                    { name: "show book list", value: 'list book' },
+                    { name: "show book list", value: 'book' },
                     { name: "Exit", value: 'Exit' }
                 ]
             }
         ])
-        switch (bookList) {
+        switch (action) {
             case "add":
                 await addBook()
                 break;
@@ -34,7 +34,7 @@ export async function bookManagement() {
             case "delete":
                 await deleteBook()
                 break;
-            case "list book":
+            case "book":
                 await listBook()
                 break;
             case "Exit":

@@ -107,20 +107,20 @@ async function deleteAuthor() {
         }
     ])
     
-    let { conform } = await inquirer.prompt([
+    let { confirm } = await inquirer.prompt([
         {
             type: "input",
-            name: "conform",
+            name: "confirm",
             message: "Are you sure you want to delete (yes/no): ",
             choices: ['NO' , 'YES']
         }
     ])
-     if(conform.toLowerCase() == "yes"){
+     if(confirm.toLowerCase() == "yes"){
 
         let result = db.prepare("DELETE FROM author WHERE id = ?")
         result.run(deleteSelectItem);
         console.log("Author deleted successfully! ")
-    }else if(conform.toLowerCase() == "no"){
+    }else if(confirm.toLowerCase() == "no"){
         return autorManagement()
     }
 }

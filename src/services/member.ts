@@ -2,25 +2,25 @@ import inquirer from "inquirer"
 import { mainMenu } from "../menu/menu"
 import  db  from "../database/data"
 
-type menuAction = "add" | "update" | "delete" | "list_member" | "Exit"
+type menuAction = "add" | "update" | "delete" | "member" | "Exit"
 export async function memberManagement() {
     while (true) {
         console.log("------- AUTHOR LIBRARY --------- ");
-        let { bookList } = await inquirer.prompt<{ bookList: menuAction }>([
+        let { action } = await inquirer.prompt<{ action: menuAction }>([
             {
                 type: "list",
-                name: "bookList",
+                name: "action",
                 message: "Select following option: ?",
                 choices: [
                     { name: "add Author", value: 'add' },
                     { name: "update Author", value: 'update' },
                     { name: "delete Author", value: 'delete' },
-                    { name: "show Author list", value: 'list_member' },
+                    { name: "show Author list", value: 'member' },
                     { name: "Exit", value: 'Exit' }
                 ]
             }
         ])
-        switch (bookList) {
+        switch (action) {
             case "add":
                 await addMember()
                 break;
@@ -30,7 +30,7 @@ export async function memberManagement() {
             case "delete":
                 await deleteMember()
                 break;
-            case "list_member":
+            case "member":
                 await listMember()
                 break;
             case "Exit":

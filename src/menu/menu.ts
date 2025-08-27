@@ -1,6 +1,6 @@
 import inquirer from "inquirer"
-import { bookManagement } from "../services/serviceBook"
-import { memberManagement } from "../services/serviceMember"
+import { bookManagement } from "../services/book"
+import { memberManagement } from "../services/member"
 import { borrowManagement } from "../services/borrowBook"
 import { autorManagement } from "../services/autor"
 
